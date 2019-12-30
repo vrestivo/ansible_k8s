@@ -1,0 +1,5 @@
+- name: distribute ssh keys to clents
+  hosts: kube-cluster
+
+  roles:
+    - common_tasks

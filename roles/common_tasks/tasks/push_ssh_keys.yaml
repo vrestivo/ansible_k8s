@@ -1,0 +1,17 @@
+- name: create "{{user_ssh_dir}}"
+  file:
+    path: "{{user_ssh_dir}}"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "0700"
+
+- name: copy ssh public key to host
+  copy:
+    src: "{{user_ssh_dir}}/id_rsa.pub"
+    dest: "{{user_ssh_auth_keys}}"
+    owner: "{{user}}"
+    group: "{{user}}"
+    mode: "0644"
+
+

@@ -1,0 +1,10 @@
+- name: power off kube-cluster
+  hosts: kube-cluster
+  become: yes
+  become_method: sudo
+  
+  tasks:
+    - name: power off
+      command: /sbin/shutdown -h now
+      ignore_errors: true
+

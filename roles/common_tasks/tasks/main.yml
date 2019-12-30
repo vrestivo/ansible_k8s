@@ -1,0 +1,5 @@
+---
+# tasks file for common_tasks
+
+- name: distribute ssh keys to clients
+  include: push_ssh_keys.yaml

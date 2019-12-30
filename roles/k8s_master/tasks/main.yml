@@ -1,0 +1,43 @@
+---
+# tasks file for k8s_master
+# install prerequisites
+- name: install prerequisites
+  apt:
+    update_cache: yes
+    name:
+      - apt-transport-https
+    state: present
+
+
+# set up k8s apt repo
+- name: download and import k8s gpg key
+  apt_key:
+    keyserver: "{{k8s_gpg_key_url}}"
+    id: "{{k8s_key_id}}"
+    state: present
+
+- name: add k8s apt repository
+  apt_repository:
+    repo: "{{k8s_repo}}"
+    state: present
+
+
+# install k8s packages
+- name: install kubeadm
+  apt:
+    update_cache: yes
+    name: "{{kubeadm_pkg}}"
+    state: present
+  
+- name: install kubelet
+  apt:
+    name: "{{kubelet_pkg}}"
+    state: present
+
+
+- name: install kubectl
+  apt:
+    name: "{{kubectl_pkg}}"
+    state: present
+
+
