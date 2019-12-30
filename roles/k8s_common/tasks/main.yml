@@ -6,8 +6,14 @@
     update_cache: yes
     name:
       - apt-transport-https
+      - ca-certificates
+      - gnupg-agent
+      - software-properties-common
     state: present
 
+# install docker
+- name: install docker
+  include: install_docker.yaml
 
 # set up k8s apt repo
 - name: download and import k8s gpg key
@@ -39,5 +45,4 @@
   apt:
     name: "{{kubectl_pkg}}"
     state: present
-
 
