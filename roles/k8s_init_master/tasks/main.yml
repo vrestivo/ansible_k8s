@@ -7,14 +7,27 @@
       - kubeadm
       - init
       - "--pod-network-cidr={{ flannel_pod_net_cidr }}"
+  when: kubeadm_installed.changed
   register: kubeadm_init_out
 
-- name: store kubeadm init output
-  copy:
-      content: "{{ kubeadm_init_out.stdout }}"
-      dest: out.txt
-  delegate: localhost
+- name: save kubeadm init locally
+  local_action: copy content="{{ kubeadm_init_out.stdout }}" dest="/home/{{user}}/kube_init_out.txt"
   when: kubeadm_init_out.changed
 
+- name: crete "{{ k8s_local_cfg_dir }}"
+  file:
+    path: "{{ k8s_local_cfg_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    
 
+- name: copy k8s config files
+  copy:
+    remote_src: true
+    src: "{{ k8s_etc_admin_cfg }}"
+    dest: "{{ k8s_local_cfg_file }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  
 

@@ -1,6 +1,4 @@
 ---
 # handlers file for k8s_init_master
 
-- name: save kubeadm init output
-  delegate: 127.0.0.1
 

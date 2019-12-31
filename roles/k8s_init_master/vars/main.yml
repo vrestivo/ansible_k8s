@@ -3,4 +3,9 @@
 
 ##### Master node donfiguration #####
 flannel_pod_net_cidr: 10.244.0.0/16
-kube_init_out_dest: /root/kube_init_out.txt
+kube_init_out_dest: "/home/{{ user }}/kube_init_out.txt"
+k8s_etc_admin_cfg: /etc/kubernetes/admin.conf 
+k8s_local_cfg_dir: "/home/{{ user }}/.kube"
+k8s_local_cfg_file: "{{ k8s_local_cfg_dir }}/config"
+
+

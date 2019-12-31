@@ -34,6 +34,7 @@
     update_cache: yes
     name: "{{kubeadm_pkg}}"
     state: present
+  register: kubeadm_installed
   
 - name: install kubelet
   apt:
