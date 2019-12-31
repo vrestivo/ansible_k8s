@@ -1,0 +1,6 @@
+---
+# vars file for k8s_init_master
+
+##### Master node donfiguration #####
+flannel_pod_net_cidr: 10.244.0.0/16
+kube_init_out_dest: /root/kube_init_out.txt

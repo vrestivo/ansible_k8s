@@ -46,3 +46,6 @@
     name: "{{kubectl_pkg}}"
     state: present
 
+- name: disable swap
+  include: disable_swap.yaml
+

@@ -1,0 +1,7 @@
+- name: run swapoff -a
+  command:  swapoff -a
+
+- name: comment out swap line in /etc/fstab
+  command: sed -i 's/^\/swap.img.*/# &/g' /etc/fstab
+  
+

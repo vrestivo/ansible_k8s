@@ -1,0 +1,10 @@
+- name: create a k8s master node
+  hosts: kube-cluster
+  become: yes
+  become_method: sudo
+
+  roles: 
+    - k8s_common
+    - k8s_init_master
+
+

@@ -1,0 +1,7 @@
+- name: instal k8s master
+  hosts: kube-cluster
+  become: yes
+  become_method: sudo
+
+  roles:
+    - k8s_common
