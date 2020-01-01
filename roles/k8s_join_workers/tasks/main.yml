@@ -1,0 +1,7 @@
+---
+# tasks file for k8s_join_workers
+
+- name: join k8s worker to a cluster
+  command: kubeadm join "{{ master_host_ip }}:{{ master_port }}" --token "{{ discovery_token }}" --discovery-token-ca-cert-hash "{{ discovery_token_hash }}"
+
+
