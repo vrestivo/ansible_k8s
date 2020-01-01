@@ -1,4 +1,8 @@
 ---
 # handlers file for k8s_init_master
+- name: restart kubelet
+  systemd:
+    name: kubelet
+    state: restarted
 
 

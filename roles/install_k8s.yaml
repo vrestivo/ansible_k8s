@@ -1,4 +1,4 @@
-- name: instal k8s master
+- name: instal k8s
   hosts: kube-cluster
   become: yes
   become_method: sudo

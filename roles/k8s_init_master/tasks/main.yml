@@ -14,7 +14,7 @@
   local_action: copy content="{{ kubeadm_init_out.stdout }}" dest="/home/{{user}}/kube_init_out.txt"
   when: kubeadm_init_out.changed
 
-- name: crete "{{ k8s_local_cfg_dir }}"
+- name: create "{{ k8s_local_cfg_dir }}"
   file:
     path: "{{ k8s_local_cfg_dir }}"
     state: directory
@@ -29,5 +29,10 @@
     dest: "{{ k8s_local_cfg_file }}"
     owner: "{{ user }}"
     group: "{{ user }}"
+  notify: restart kubelet
   
+- name: apply flannel settings
+  command: "kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml --kubeconfig {{ k8s_local_cfg_file }}" 
+  notify: restart kubelet
+
 
