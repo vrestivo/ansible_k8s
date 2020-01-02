@@ -1,0 +1,12 @@
+---
+# vars file for install_helm_2
+helm_dir: "/home/{{ user }}/helm"
+helm_url: https://storage.googleapis.com/kubernetes-helm/helm-v2.9.1-linux-amd64.tar.gz
+helm_archive: helm-v2.9.1-linux-amd64.tar.gz
+helm_download_dest: "/tmp/{{ helm_archive }}"
+helm_ext_dir: /tmp/linux-amd64
+helm_local_bin_path: /usr/local/bin/helm
+helm_hash_only: 56ae2d5d08c68d6e7400d462d6ed10c929effac929fedce18d2636a9b4e166ba
+helm_checksum: "sha256:{{ helm_hash_only }}"
+
+

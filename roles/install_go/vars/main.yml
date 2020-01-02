@@ -1,0 +1,15 @@
+---
+# vars file for install_go
+
+go_url: https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+go_archive: go1.13.5.linux-amd64.tar.gz
+go_hash_only: "512103d7ad296467814a6e3f635631bd35574cab3369a97a323c9a585ccaa569"
+go_checksum: "sha256:{{ go_hash_only }}"
+
+usr_local: /usr/local
+go_path: export PATH=$PATH:/usr/local/go/bin
+go_root_var: export GOROOT:/
+bash_profile: "/home/{{ user }}/.profile"
+go_home_src: "/home/{{ user }}/go/src" 
+
+

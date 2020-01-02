@@ -1,0 +1,33 @@
+[local]
+# localhost for testing
+kube_local ansible_host=localhsot ansible_user=kube become_method=sudo
+
+
+# master group
+[master]
+kube-master ansible_host=10.0.3.20 ansible_user=kube become_method=sudo
+
+
+# worker group
+[workers]
+kube-node-01 ansible_host=10.0.3.21 ansible_user=kube become_method=sudo
+kube-node-02 ansible_host=10.0.3.22 ansible_user=kube become_method=sudo
+kube-node-03 ansible_host=10.0.3.23 ansible_user=kube become_method=sudo
+kube-node-04 ansible_host=10.0.3.24 ansible_user=kube become_method=sudo
+
+
+# kube-cluster includes all hosts inside the cluster
+[kube-cluster:children]
+master
+workers
+
+
+# cluster-wide variables
+[kube-cluster:vars]
+user=kube
+master_host_ip=10.0.3.20
+master_port=6443
+discovery_token=INSERT_TOKEN_HERE
+discovery_token_hash=sha256:INSERT_HASH_HERE
+
+

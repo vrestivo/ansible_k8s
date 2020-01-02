@@ -1,0 +1,41 @@
+---
+# tasks file for install_go
+
+- name: check if file is already downloaded
+  stat:
+    path: "/tmp/{{ go_archive }}"
+    checksum_algorithm: sha256
+  register: tmp_go_archive
+
+
+- name: download "{{ go_archive }}"
+  get_url:
+    url: "{{ go_url }}"
+    checksum: "{{ go_checksum }}"
+    dest: /tmp
+  when: (tmp_go_archive.stat.checksum is not defined) or (tmp_go_archive.stat.checksum != "{{ go_hash_only }}")
+  register: result
+
+
+- name: debug download "{{ go_archive }}"
+  debug:
+    msg: "{{ result }}"
+
+
+- name: extract "{{ go_archive }}"
+  unarchive: 
+    remote_src: yes
+    src: "/tmp/{{ go_archive }}"
+    dest: "{{ usr_local }}"
+
+
+- name: set go environmental variables
+  lineinfile:
+    path: "{{ bash_profile }}"
+    state: present
+    regexp: '^export PATH=$PATH:/usr/local/go/bin'
+    line: export PATH=$PATH:/usr/local/go/bin
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+

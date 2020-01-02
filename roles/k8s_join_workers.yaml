@@ -1,0 +1,9 @@
+- name: join worker nodes to kube-cluster
+  hosts: workers
+  become: yes
+  become_method: sudo
+
+  roles:
+    - k8s_join_workers
+
+
