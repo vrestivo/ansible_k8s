@@ -1,0 +1,9 @@
+- name: instal helm 3
+  hosts: kube-master
+  become: yes
+  become_method: sudo
+
+  roles:
+    - install_helm_3
+
+    

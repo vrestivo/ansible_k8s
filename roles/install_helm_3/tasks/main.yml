@@ -1,0 +1,42 @@
+---
+# tasks file for install_helm_3
+
+- name: check if file is already downloaded
+  stat:
+    path: "/tmp/{{ helm_archive }}"
+    checksum_algorithm: sha256
+  register: tmp_helm_archive
+
+
+- name: download "{{ helm_archive }}"
+  get_url:
+    url: "{{ helm_url }}"
+    checksum: "{{ helm_checksum }}"
+    dest: /tmp
+  when:
+    (tmp_helm_archive.stat.checksum is not defined) or
+    (tmp_helm_archive.stat.checksum != "{{ helm_hash_only }}")
+
+
+- name: extract "{{ helm_archive }}"
+  unarchive:
+    remote_src: true
+    src: "/tmp/{{ helm_archive }}"
+    dest: /tmp
+
+
+- name: remove old helm binary
+  file:
+    path: "{{ helm_dest_bin }}"
+    state: absent
+
+- name: copy helm binary to "{{ helm_bin_dest }}"
+  copy:
+    remote_src: yes
+    src: "{{ helm_ext_bin }}"
+    dest: "{{ helm_dest_dir }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0544
+
+
