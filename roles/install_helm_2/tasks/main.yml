@@ -38,5 +38,6 @@
     dest: "{{ helm_local_bin_path }}"
     owner: "{{ user }}"
     group: "{{ user }}"
+    mode: 0544
 
 
