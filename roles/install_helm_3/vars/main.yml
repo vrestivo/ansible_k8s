@@ -7,4 +7,4 @@ helm_checksum: "sha256:{{ helm_hash_only }}"
 helm_ext_dir: "/tmp/linux-amd64"
 helm_ext_bin: "{{ helm_ext_dir }}/helm"
 helm_dest_dir: /usr/local/bin
-helm_dest_bin: "{[ helm_dest_dir }}/helm"
+helm_dest_bin: "{{ helm_dest_dir }}/helm3"

@@ -30,11 +30,11 @@
     path: "{{ helm_dest_bin }}"
     state: absent
 
-- name: copy helm binary to "{{ helm_bin_dest }}"
+- name: copy helm binary to "{{ helm_dest_dir }}"
   copy:
     remote_src: yes
     src: "{{ helm_ext_bin }}"
-    dest: "{{ helm_dest_dir }}"
+    dest: "{{ helm_dest_bin }}"
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0544
