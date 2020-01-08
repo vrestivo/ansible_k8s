@@ -2,6 +2,7 @@
   hosts: kube-cluster
   become: yes
   become_method: sudo
+  gather_facts: false
   
   tasks:
     - name: power off

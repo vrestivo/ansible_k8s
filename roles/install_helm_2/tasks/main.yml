@@ -1,13 +1,6 @@
 ---
 # tasks file for install_helm_2
 
-- name: create helm dir
-  file:
-    path: "{{ helm_dir }}"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
 - name: check if file is already downloaded
   stat:
     path: "/tmp/{{ helm_archive }}"
@@ -31,7 +24,7 @@
 #  when: download_helm.changed
 
 
-- name: copy helm binary to 
+- name: "copy helm binary to {{ helm_local_bin_path }}"
   copy:
     remote_src: yes
     src: "{{ helm_ext_dir }}/helm"

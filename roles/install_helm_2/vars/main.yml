@@ -1,6 +1,5 @@
 ---
 # vars file for install_helm_2
-helm_dir: "/home/{{ user }}/helm"
 helm_url: https://get.helm.sh/helm-v2.16.1-linux-amd64.tar.gz
 helm_archive: helm-v2.16.1-linux-amd64.tar.gz
 helm_download_dest: "/tmp/{{ helm_archive }}"
