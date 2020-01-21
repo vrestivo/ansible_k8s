@@ -2,11 +2,12 @@
   hosts: workers
   become: no
   gather_facts: yes
+  ignore_errors: yes
 
   tasks:
     - name: Display Memory Stats
       debug:
         msg: "Free/Total MB: {{ ansible_memory_mb.real.free }}/{{ansible_memory_mb.real.total}}" 
-
+      
 
 

@@ -1,0 +1,9 @@
+- name: Install Kubernetes and Docker
+  hosts: kube-cluster
+  become: yes
+  become_method: sudo
+
+  roles:
+    - k8s_common
+
+
